@@ -26,7 +26,7 @@ exports.createJob = async (req, res, next) => {
 //single job
 exports.singleJob = async (req, res, next) => {
     try {
-        const job = await Job.findById(req.params.id);
+        const job = await Job.findById(req.params.id).populate('jobType', 'jobTypeName');
         res.status(200).json({
             success: true,
             job
@@ -44,6 +44,20 @@ exports.updateJob = async (req, res, next) => {
         res.status(200).json({
             success: true,
             job
+        })
+    } catch (error) {
+        next(error);
+    }
+}
+
+
+//delete job by id.
+exports.deleteJob = async (req, res, next) => {
+    try {
+        const job = await Job.findByIdAndDelete(req.params.job_id);
+        res.status(200).json({
+            success: true,
+            message: "job deleted."
         })
     } catch (error) {
         next(error);
