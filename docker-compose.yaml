@@ -30,7 +30,8 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - /home/fatih/mongo-backup:/data/db
+      - /home/ubuntu/mongo-backup:/data/db
+
     networks:
       - mern-network
 
