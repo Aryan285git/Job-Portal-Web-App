@@ -3,6 +3,7 @@ version: "3"
 services:
   frontend:
     build: ./frontend
+    container_name: react-ui
     ports:
       - "3000:3000"
     stdin_open: true
@@ -14,6 +15,7 @@ services:
   
   backend:
     build: ./backend
+    container_name: node-api
     restart: always
     ports:
       - "9000:9000"
@@ -24,10 +26,11 @@ services:
 
   database:
     image: mongo
+    container_name: mongo-db
     ports:
       - "27017:27017"
     volumes:
-      - mongo-data:/data/db
+      - /home/fatih/mongo-backup:/data/db
     networks:
       - mern-network
 
@@ -35,7 +38,4 @@ networks:
   mern-network:
     driver: bridge
 
-volumes:
-  mongo-data:
-    driver: local
     
