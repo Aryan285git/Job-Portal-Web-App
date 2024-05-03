@@ -20,7 +20,7 @@ const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
 //database connection
-mongoose.connect(process.env.DATABASE, {
+mongoose.connect("mongodb://mongo-db/test", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
